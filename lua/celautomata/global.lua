@@ -3,6 +3,9 @@ GLOBAL = {
       plugin = {
          win = nil,
          buf = nil,
+         namespace = nil,
+         name = "celautomata",
+         continue = false,
       },
       grid = {},
    },
@@ -12,7 +15,6 @@ GLOBAL = {
          "number",
          "relativenumber",
          "list",
-         "wrap",
          "signcolumn",
          "foldcolumn",
          "statuscolumn",

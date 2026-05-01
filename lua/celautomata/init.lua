@@ -1,8 +1,10 @@
-local windows = require( "celautomata.windows" );
+local run = require( "celautomata.run" );
+
 local M = {};
 
 M.celautomata = function()
-   windows.init_window();
+   -- TODO: animation names
+   run.start_animation( "TODO" );
 end;
 
 M.setup = function( opts )
