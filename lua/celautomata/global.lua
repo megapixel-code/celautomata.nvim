@@ -34,10 +34,7 @@ GLOBAL = {
             { "listchars", "tab:  ,trail: ,nbsp: " },
          },
       },
-      animations = {
-         example = automata.example,
-         conways_game_of_life = automata.conways_game_of_life,
-      },
+      animations = automata,
    },
 };
 

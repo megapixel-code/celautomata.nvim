@@ -34,6 +34,9 @@ M._display_frame = function()
 end;
 
 M._frame_update = function( animation )
+   assert( animation ~= nil,
+           GLOBAL.CONSTANTS.plugin.name .. "; ERROR: This animation does not exist." );
+
    if (GLOBAL.CONSTANTS.plugin.continue == false) then return; end;
 
    local ms = 1000 / animation.fps;

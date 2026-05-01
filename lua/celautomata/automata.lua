@@ -45,16 +45,45 @@ gol = {
       end;
       return grid[y][x];
    end,
+   update_grid = function( grid, rule )
+      local new_grid = {};
+
+      for y = 1, #grid do
+         table.insert( new_grid, {} );
+         for x = 1, #(grid[y]) do
+            new_grid[y][x] = gol.update_cell( grid, { x, y }, rule );
+         end;
+      end;
+
+      for y = 1, #grid do
+         for x = 1, #(grid[y]) do
+            grid[y][x] = new_grid[y][x];
+         end;
+      end;
+   end,
 
    rule_conways = {
       die = function( n_cells_around )
-         if (n_cells_around < 2) then return true; end;
-         if (n_cells_around > 3) then return true; end;
-         return false;
+         return (n_cells_around < 2 or n_cells_around > 3);
       end,
       born = function( n_cells_around )
-         if (n_cells_around == 3) then return true; end;
-         return false;
+         return (n_cells_around == 3);
+      end,
+   },
+   rule_day_night = {
+      die  = function( n_cells_around )
+         return (n_cells_around <= 2 or n_cells_around == 5);
+      end,
+      born = function( n_cells_around )
+         return (n_cells_around == 3 or 6 <= n_cells_around);
+      end,
+   },
+   rule_pulsar_life = {
+      die  = function( n_cells_around )
+         return not (n_cells_around == 2 or n_cells_around == 3 or n_cells_around == 8);
+      end,
+      born = function( n_cells_around )
+         return (n_cells_around == 3);
       end,
    },
 };
@@ -82,20 +111,23 @@ M = {
       variables = {
       },
       update = function( grid, variables )
-         local cell;
-         local new_grid = {};
-         for y = 1, #grid do
-            table.insert( new_grid, {} );
-            for x = 1, #(grid[y]) do
-               new_grid[y][x] = gol.update_cell( grid, { x, y }, gol.rule_conways );
-            end;
-         end;
-
-         for y = 1, #grid do
-            for x = 1, #(grid[y]) do
-               grid[y][x] = new_grid[y][x];
-            end;
-         end;
+         gol.update_grid( grid, gol.rule_conways );
+      end,
+   },
+   day_night_game_of_life = {
+      fps = 10,
+      variables = {
+      },
+      update = function( grid, variables )
+         gol.update_grid( grid, gol.rule_day_night );
+      end,
+   },
+   pulsar_life_game_of_life = {
+      fps = 10,
+      variables = {
+      },
+      update = function( grid, variables )
+         gol.update_grid( grid, gol.rule_pulsar_life );
       end,
    },
 };
