@@ -1,3 +1,5 @@
+local automata = require( "celautomata.automata" );
+
 GLOBAL = {
    CONSTANTS = {
       plugin = {
@@ -28,8 +30,13 @@ GLOBAL = {
             { "swapfile",   false },
          },
          win = {
-            { "wrap", false },
+            { "wrap",      false },
+            { "listchars", "tab:  ,trail: ,nbsp: " },
          },
+      },
+      animations = {
+         example = automata.example,
+         conways_game_of_life = automata.conways_game_of_life,
       },
    },
 };

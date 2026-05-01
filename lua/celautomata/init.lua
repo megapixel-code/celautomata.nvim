@@ -4,7 +4,7 @@ local M = {};
 
 M.celautomata = function()
    -- TODO: animation names
-   run.start_animation( "TODO" );
+   run.start_animation( "conways_game_of_life" );
 end;
 
 M.setup = function( opts )
