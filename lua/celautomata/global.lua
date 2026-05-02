@@ -65,6 +65,7 @@ GLOBAL = {
          win = {
             { "wrap",      false },
             { "listchars", "tab:  ,trail: ,nbsp: " },
+            { "spell",     false },
          },
       },
    },
