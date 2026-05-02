@@ -16,6 +16,7 @@ This is why I made a full re-write of the plugin (took me 3 whole days lol)
 
 ## Examples:
 
+https://github.com/user-attachments/assets/bc3dcbdb-93d3-4643-bcf7-031cc3f86da6
 
 ## Config:
 
