@@ -90,7 +90,7 @@ opts = {
 },
 
 -- that you will call like
-require("celautomata").start_animation( "test" )
+require("celautomata").start_animation( "example" )
 ```
 
 What's inside ```grid[y][x]``` ?
