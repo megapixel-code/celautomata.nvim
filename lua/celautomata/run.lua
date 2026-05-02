@@ -52,7 +52,7 @@ M.start_animation = function( animation_name )
    windows.init_window();
 
    GLOBAL.CONSTANTS.plugin.continue = true;
-   M._frame_update( GLOBAL.DEFAULTS.animations[animation_name] );
+   M._frame_update( GLOBAL.USER_CONFIG.animations[animation_name] );
 end;
 
 return M;

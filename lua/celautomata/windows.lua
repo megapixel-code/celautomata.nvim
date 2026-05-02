@@ -17,6 +17,7 @@ M._populate_grid = function()
 
    local extmarks_val, inspect_vals, hl_groups_values, hl, char;
 
+   GLOBAL.CONSTANTS.grid = {};
    for y = 1, win.nlines do
       GLOBAL.CONSTANTS.grid[y] = {};
       for x = 1, win.ncols do
@@ -42,9 +43,9 @@ end;
 
 M._populate_vars = function()
    local val;
-   for _, opt in ipairs( GLOBAL.DEFAULTS.relevant_win_opts ) do
+   for _, opt in ipairs( GLOBAL.CONSTANTS.relevant_win_opts ) do
       val = vim.api.nvim_get_option_value( opt, { win = 0 } );
-      table.insert( GLOBAL.DEFAULTS.additional_nvim_opts.win, { opt, val } );
+      table.insert( GLOBAL.CONSTANTS.additional_nvim_opts.win, { opt, val } );
    end;
    GLOBAL.CONSTANTS.plugin.namespace = vim.api.nvim_create_namespace( GLOBAL.CONSTANTS.plugin.name );
    M._populate_grid();
@@ -79,10 +80,10 @@ end;
 
 M._set_additional_nvim_opts = function()
    -- FIXME: offset when lines in buffer over 100
-   for _, opt in ipairs( GLOBAL.DEFAULTS.additional_nvim_opts.buf ) do
+   for _, opt in ipairs( GLOBAL.CONSTANTS.additional_nvim_opts.buf ) do
       vim.api.nvim_set_option_value( opt[1], opt[2], { buf = GLOBAL.CONSTANTS.plugin.buf } );
    end;
-   for _, opt in ipairs( GLOBAL.DEFAULTS.additional_nvim_opts.win ) do
+   for _, opt in ipairs( GLOBAL.CONSTANTS.additional_nvim_opts.win ) do
       vim.api.nvim_set_option_value( opt[1], opt[2], { win = GLOBAL.CONSTANTS.plugin.win, scope = "local" } );
    end;
 end;
