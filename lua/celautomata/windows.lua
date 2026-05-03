@@ -54,7 +54,10 @@ end;
 M._close_win = function()
    if (GLOBAL.CONSTANTS.plugin.win == nil) then return; end;
 
+   local win = GLOBAL.CONSTANTS.plugin.win or 0;
    vim.api.nvim_buf_delete( GLOBAL.CONSTANTS.plugin.buf, { force = true } );
+   vim.api.nvim_win_set_buf( win, GLOBAL.CONSTANTS.plugin.previous_buffer );
+
    GLOBAL.CONSTANTS.plugin.win = nil;
    GLOBAL.CONSTANTS.plugin.buf = nil;
    GLOBAL.CONSTANTS.plugin.continue = false;
@@ -91,6 +94,7 @@ end;
 M.init_window = function()
    M._populate_vars();
 
+   GLOBAL.CONSTANTS.plugin.previous_buffer = vim.api.nvim_get_current_buf();
    GLOBAL.CONSTANTS.plugin.buf = vim.api.nvim_create_buf( false, true );
    vim.api.nvim_set_current_buf( GLOBAL.CONSTANTS.plugin.buf );
 

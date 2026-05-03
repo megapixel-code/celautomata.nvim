@@ -16,6 +16,7 @@ local automata = require( "celautomata.automata" );
 --- @field namespace? integer
 --- @field name string
 --- @field continue boolean
+--- @field previous_buffer? integer
 
 --- @class grid_field
 --- @field line line_field[]
@@ -45,6 +46,7 @@ GLOBAL = {
          namespace = nil,
          name = "celautomata",
          continue = false,
+         previous_buffer = nil,
       },
       relevant_win_opts = {
          "number",
