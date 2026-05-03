@@ -17,6 +17,7 @@ M._populate_grid = function()
 
    local extmarks_val, inspect_vals, hl_groups_values, hl, char;
 
+   --- @diagnostic disable-next-line
    GLOBAL.CONSTANTS.grid = {};
    for y = 1, win.nlines do
       GLOBAL.CONSTANTS.grid[y] = {};
@@ -54,8 +55,9 @@ end;
 M._close_win = function()
    if (GLOBAL.CONSTANTS.plugin.win == nil) then return; end;
 
-   local win = GLOBAL.CONSTANTS.plugin.win or 0;
+   local win = GLOBAL.CONSTANTS.plugin.win;
    vim.api.nvim_buf_delete( GLOBAL.CONSTANTS.plugin.buf, { force = true } );
+   --- @diagnostic disable-next-line
    vim.api.nvim_win_set_buf( win, GLOBAL.CONSTANTS.plugin.previous_buffer );
 
    GLOBAL.CONSTANTS.plugin.win = nil;
