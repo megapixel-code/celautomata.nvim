@@ -40,6 +40,16 @@ local pos_in_grid = function( pos, grid )
    return (1 <= y and y <= #grid and 1 <= x and x <= #grid[1]);
 end;
 
+--- @param pos [integer, integer]
+--- @param grid grid_field
+--- @return integer, integer
+local loop_around_grid = function( pos, grid )
+   local x, y = pos[1], pos[2];
+   local xx = ((x - 1) % #grid[1]) + 1;
+   local yy = ((y - 1) % #grid) + 1;
+   return xx, yy;
+end;
+
 local gol = {};
 gol = {
    update_cell = function( grid, coords, rules )
@@ -60,6 +70,9 @@ gol = {
       for _, offset in ipairs( positions ) do
          xx = x + offset[1];
          yy = y + offset[2];
+
+         xx, yy = loop_around_grid( { xx, yy }, grid );
+
          if pos_in_grid( { xx, yy }, grid ) then
             if (cell_alive( grid[yy][xx] )) then n_cells_around = n_cells_around + 1; end;
          end;
@@ -72,6 +85,9 @@ gol = {
          for _, offset in ipairs( positions ) do
             xx = x + offset[1];
             yy = y + offset[2];
+
+            xx, yy = loop_around_grid( { xx, yy }, grid );
+
             if pos_in_grid( { xx, yy }, grid ) then
                if (cell_alive( grid[yy][xx] )) then
                   return grid[yy][xx];
